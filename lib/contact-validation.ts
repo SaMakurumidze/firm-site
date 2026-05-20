@@ -12,12 +12,12 @@ const nameField = z
   .trim()
   .min(1, "All fields are required.")
   .max(80, "Name is too long.")
-  .refine((s) => !HAS_DISALLOWED_CTRL.test(s), "Name contains invalid characters.")
-  .refine((s) => !/[<>]/.test(s), "Name contains invalid characters.")
   .regex(
     /^[\p{L}\p{M}0-9\s'.-]+$/u,
     "Name may only contain letters, numbers, spaces, hyphens, apostrophes, and periods.",
   )
+  .refine((s) => !HAS_DISALLOWED_CTRL.test(s), "Name contains invalid characters.")
+  .refine((s) => !/[<>]/.test(s), "Name contains invalid characters.")
 
 const messageField = z
   .string()
